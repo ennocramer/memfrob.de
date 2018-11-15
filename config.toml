@@ -1,0 +1,23 @@
+# The URL the site will be built for
+base_url = "https://memfrob.de/"
+
+title = "memfrob.de"
+description = ""
+
+# Whether to automatically compile all Sass files in the sass directory
+compile_sass = true
+
+# Whether to do syntax highlighting
+# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Gutenberg
+highlight_code = true
+highlight_theme = "solarized-light"
+
+# Whether to build a search index to be used later on by a JavaScript library
+build_search_index = false
+
+# Ignore editor lock and backup files
+ignored_content = [ "*~", ".#*" ]
+
+[extra]
+# Put all your custom variables here
+email = "ecramer@memfrob.de"

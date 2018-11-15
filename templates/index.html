@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}{{ section.title }}{% endblock title %}
+
+{% block content %}
+<div class="home">
+
+  <h1 class="page-heading">Posts</h1>
+
+  <ul class="post-list">
+    {% set posts = get_section(path="posts/_index.md") %}
+    {% for post in posts.pages %}
+    <li>
+      <span class="post-meta">{{ post.date | date(format="%b %-d, %Y") }}</span>
+
+      <h2>
+        <a class="post-link" href="{{ get_url(path=post.path) | safe }}">{{ post.title }}</a>
+        <p class="post-excerpt">{{ post.description }}</p>
+        </h2>
+      </li>
+    {% endfor %}
+  </ul>
+
+</div>
+{% endblock content %}

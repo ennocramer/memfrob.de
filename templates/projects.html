@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}{{ section.title }}{% endblock title %}
+
+{% block content %}
+<div class="home">
+
+  <h1 class="page-heading">Projects</h1>
+
+  <ul class="post-list">
+    {% for project in section.pages | sort(attribute="title") %}
+      <li>
+        <h2>
+          <a class="post-link" href="{{ get_url(path=project.path) | safe }}">{{ project.title }}</a>
+          <p class="post-excerpt">{{ project.description }}</p>
+        </h2>
+      </li>
+    {% endfor %}
+  </ul>
+
+</div>
+{% endblock content %}

@@ -1,0 +1,575 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+
+<head>
+  <title>WikiText Specification</title>
+</head>
+
+<body>
+<h1 id="title">WikiText Specification</h1>
+
+
+<a name="Motivation"></a>
+<h1>Motivation</h1>
+
+<p>WikiText is an attempt to specify a very simple text markup protocol,
+that retains readability and adheres to formatting conventions
+commonly found in text based communication, such as email or irc.</p>
+
+<p>WikiText formatted documents strive to be easily readable by humans,
+judiciously using whitespace and special characters for formatting,
+and not cluttering the text with an abundance of markup tags.</p>
+
+<p>WikiText documents can be converted to other formats, such as HTML or
+Latex, with relative ease.</p>
+
+
+<a name="Document_Structure"></a>
+<h1>Document Structure</h1>
+
+<p>A WikiText document consists of sections, environments, and
+paragraphs.  Sections define the coarsest structure of the document,
+and can contain environments and paragraphs.  Environments define the
+finer structure of the document, and can contain other environments
+and paragraphs.  Paragraphs are the basic elements of a document, and
+contain the actual text, associated with a certain meaning.</p>
+
+<p>A document is divided into sections.  Each section consists of a
+heading and a list of environments or paragraphs.  A section extends
+from its heading to the beginning of the next section, or the end of
+the document.</p>
+
+<p>Environments further subdivide the sections of the document.
+Environments can nest, thus forming a tree structure.  Nesting is
+controlled by indentation.  Environments are nested into the last
+opened environment with less indentation.  Paragraphs are nested into
+the last opened environment with less or equal indentation.</p>
+
+<p>Four different environments are defined:</p>
+
+<ul>
+<li>
+Quotations,
+</li>
+<li>
+Listings,
+</li>
+<li>
+Enumerations, and
+</li>
+<li>
+Descriptions.
+</li>
+</ul>
+
+<p>Three types of paragraphs, and three types of special, paragraph-like
+blocks are defined:</p>
+
+<ul>
+<li>
+Normal paragraphs,
+</li>
+<li>
+Preformatted text blocks, and
+</li>
+<li>
+Code blocks.
+</li>
+</ul>
+
+<p>The three special blocks are</p>
+
+<ul>
+<li>
+Tables,
+</li>
+<li>
+Horizontal rules, and
+</li>
+<li>
+Verbatim blocks.
+</li>
+</ul>
+
+<p>Text in normal paragraphs and preformatted text blocks can be
+formatted with inline markup.  Inline markup is defined for</p>
+
+<ul>
+<li>
+Emphasis,
+</li>
+<li>
+Strong,
+</li>
+<li>
+Underline,
+</li>
+<li>
+Strikeout, and
+</li>
+<li>
+Typewriter font.
+</li>
+</ul>
+
+<a name="Inline_Markup"></a>
+<h1>Inline Markup</h1>
+
+
+<a name="Text_Formatting"></a>
+<h2>Text Formatting</h2>
+
+<p>Text formatting tags must enclose the formatted text without
+intermediate whitespace.  The opening character must be preceded by
+whitespace, an opening senctence character (&quot;(&quot;, &quot;¿&quot;, etc) or the
+beginning-of-paragraph, the closing character must be followed by
+whitespace, a closing sentence character (&quot;.&quot;, &quot;!&quot;, &quot;?&quot;, &quot;,&quot;, &quot;:&quot;,
+&quot;;&quot;, etc) or the end-of-paragraph.</p>
+
+<p>Valid inline formatting tags are &quot;/&quot; for emphasis, &quot;*&quot; for strong, &quot;_&quot;
+for underline, &quot;-&quot; for strikeout, and &quot;{}&quot; for typewriter font.</p>
+
+<p><b>Note</b>&nbsp;&nbsp;&nbsp;Underline and strikeout are not allowed in strict variants of
+HTML.  Strikeout in Latex output requires the <tt>sout</tt> package.
+External links in Latex require the <tt>url</tt> and optionally the
+<tt>hyperref</tt> package.</p>
+
+<p><b>Example</b>&nbsp;&nbsp;&nbsp;</p>
+
+<pre><code>A -big- /small/ sample paragraph with *simple* text _formatting_
+and a bit of {typewriter} font.</code></pre>
+
+<p><b>Output</b>&nbsp;&nbsp;&nbsp;</p>
+
+<blockquote>
+<p>A <strike>big</strike> <em>small</em> sample paragraph with <strong>simple</strong> text <u>formatting</u>
+and a bit of <tt>typewriter</tt> font.</p>
+</blockquote>
+
+<a name="Links"></a>
+<h2>Links</h2>
+
+<p>Links are denoted by enclosing the link target in square brackets (&quot;[&quot;
+and &quot;]&quot;).  A link can point to other sections in the same document
+(see also section <a href="#Sections">Sections</a>), external objects, and images.  If the
+type of the link is not mentioned explicitly, it is determined from
+the link target.</p>
+
+<p>The type of the link can be set explicitly by adding a control
+character after the opening bracket.  A greater-than character
+(&quot;[&gt;url]&quot;) indicates an external link, a hash-mark (&quot;[#section]&quot;)
+indicates an internal link, and an equal-sign (&quot;[=image]&quot;) includes
+the linked object directly.</p>
+
+<p>A link or image description can be specified by adding a vertical bar
+and the description after the link target (&quot;[url|title]&quot;).  If no link
+description is given, the target will be used.</p>
+
+<p>Incomplete link targets are automatically completed by adding
+&quot;http://&quot; or &quot;mailto:&quot;.</p>
+
+<p><b>Example</b>&nbsp;&nbsp;&nbsp;</p>
+
+<pre><code>This is a simple [http://nowhere.org/|link].  Another link to
+[podius.wox.org].</code></pre>
+
+<p><b>Output</b>&nbsp;&nbsp;&nbsp;</p>
+
+<blockquote>
+<p>This is a simple <a href="http://nowhere.org/">link</a>.  Another link to
+<a href="http://podius.wox.org">podius.wox.org</a>.</p>
+</blockquote>
+
+<a name="Verbatim_Text"></a>
+<h2>Verbatim Text</h2>
+
+<p>A section of text enclosed in a double pair of curly braces is copied
+verbatim to the output, without replacing markup or HTML control
+characters.</p>
+
+<p><b>Example</b>&nbsp;&nbsp;&nbsp;</p>
+
+<pre><code>&lt;em&gt;substituted&lt;/em&gt; and {{&lt;em&gt;verbatim *stuff*&lt;/em&gt;}}</code></pre>
+
+<a name="Paragraphs_and_Paragraph_like_Blocks"></a>
+<h1>Paragraphs and Paragraph-like Blocks</h1>
+
+<p>There are different types of paragraphs.  The type of each paragraph
+can be determined from its first line.</p>
+
+<a name="Ordinary_Paragraphs"></a>
+<h2>Ordinary Paragraphs</h2>
+
+<p>Text in ordinary paragraphs is subject to automatic line breaking, and
+may be formatted using inline markup.  Ordinary paragraphs can
+optionally contain a paragraph heading.</p>
+
+<p>Paragraphs end with a single empty line, or when a line with less
+indentation than the paragraph is encountered.</p>
+
+<p>If the first line of a paragraph contains two colons in a row (&quot;::&quot;),
+the text before is taken to be the paragraph heading.</p>
+
+<p><b>Example</b>&nbsp;&nbsp;&nbsp;</p>
+
+<pre><code>First simple paragraph.
+
+Lorem Ipsum:: Lorem ipsum dolor sit amet, consectetur adipisicing
+elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+laboris nisi ut aliquip ex ea commodo consequat.</code></pre>
+
+<p><b>Output</b>&nbsp;&nbsp;&nbsp;</p>
+
+<blockquote>
+<p>First simple paragraph.</p>
+
+<p><b>Lorem Ipsum</b>&nbsp;&nbsp;&nbsp;Lorem ipsum dolor sit amet, consectetur adipisicing
+elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+laboris nisi ut aliquip ex ea commodo consequat.</p>
+</blockquote>
+
+<a name="Preformatted_Blocks"></a>
+<h2>Preformatted Blocks</h2>
+
+<p>Text in preformatted blocks in not subject automatic line breaking and
+is set using a typewriter font.  It can, however, still be formatted
+using inline markup.</p>
+
+<p>Preformatted blocks start with a single curly, opening brace (&quot;{&quot;),
+followed by a space or line break, and end with a single curly,
+closing brace (&quot;}&quot;), followed by a line break.</p>
+
+<p>Contained lines must be indented at least as far as the opening brace.</p>
+
+<p><b>Example</b>&nbsp;&nbsp;&nbsp;</p>
+
+<pre><code>{
+Hi there!
+        ^-- *exclamation mark*
+}</code></pre>
+
+<p><b>Output</b>&nbsp;&nbsp;&nbsp;</p>
+
+<blockquote>
+<pre>Hi there!
+        ^-- <strong>exclamation mark</strong></pre>
+</blockquote>
+
+<a name="Code_Blocks"></a>
+<h2>Code Blocks</h2>
+
+<p>Code blocks contain material like source code or shell session
+records.  The content is not subject to automatic line breaking, and
+inline markup is not recognized.  The output is set using a typewriter
+font.</p>
+
+<p>Code blocks are indented with vertical bars (&quot;|&quot;) or exclamation marks
+(&quot;!&quot;).  The indentation can be omitted if the text block is introduced
+by &quot;(code)&quot; and terminated by &quot;(end)&quot;, each on a line by itself.</p>
+
+<p><b>Example</b>&nbsp;&nbsp;&nbsp;</p>
+
+<pre><code>| +------+
+| | w00t |
+| +------+</code></pre>
+
+<p><b>Output</b>&nbsp;&nbsp;&nbsp;</p>
+
+<blockquote>
+<pre><code>+------+
+| w00t |
++------+</code></pre>
+</blockquote>
+
+<a name="Tables"></a>
+<h2>Tables</h2>
+
+<p>Tabular material is delimited by a line containing only plus- (&quot;+&quot;) and
+minus-signs (&quot;-&quot;) at the front, and an empty line at the end.  The
+starting line must start and end with a plus-sign.</p>
+
+<p>Every line (except for separator lines) corresponds to a single table
+row.  Table cells are separated by vertical bars (&quot;|&quot;).  Cells spanning
+multiple columns can be specified by repeating the delimiter.</p>
+
+<p>The table can optionally include separator lines, consisting of only
+plus- and minus-signs.  A trailing separator line (if any) is discarded
+entirely.  Separator lines inside the table mark the previous row as a
+table heading.  The separator line itself is still discarded.</p>
+
+<p><b>Example</b>&nbsp;&nbsp;&nbsp;</p>
+
+<pre><code>+---------------+--------------+
+| Effect        | Markup       |
++---------------+--------------+
+| Emphasis      | /some words/ |
+| Strong        | *some words* |
+| Typewriter    | {some words} |
+| Underline     | _some words_ |
+| Strikeout     | -some words- |
++---------------+--------------+</code></pre>
+
+<p><b>Output</b>&nbsp;&nbsp;&nbsp;</p>
+
+<blockquote>
+<table>
+<tr><th>Effect</th><th>Markup</th></tr>
+<tr><td>Emphasis</td><td><em>some words</em></td></tr>
+<tr><td>Strong</td><td><strong>some words</strong></td></tr>
+<tr><td>Typewriter</td><td><tt>some words</tt></td></tr>
+<tr><td>Underline</td><td><u>some words</u></td></tr>
+<tr><td>Strikeout</td><td><strike>some words</strike></td></tr>
+</table>
+</blockquote>
+
+<a name="Horizontal_Rules"></a>
+<h2>Horizontal Rules</h2>
+
+<p>A line consisting of three or more dashes (&quot;-&quot;), followed immediately
+by a newline, generates a horizontal rule.</p>
+
+<p><b>Example</b>&nbsp;&nbsp;&nbsp;</p>
+
+<pre><code>---</code></pre>
+
+<p><b>Output</b>&nbsp;&nbsp;&nbsp;</p>
+
+<blockquote>
+<hr />
+</blockquote>
+
+<a name="Verbatim_Blocks"></a>
+<h2>Verbatim Blocks</h2>
+
+<p>Verbatim blocks are used to encapsulate code already in the output
+format.  The complete block is copied verbatim to the output.</p>
+
+<p>Verbatim blocks start with two curly, opening braces (&quot;{{&quot;), followend
+by a space or line break, and end with two curly, closing braces
+(&quot;}}&quot;), followed by a line break.</p>
+
+<p>Contained lines must be indented at least as far as the opening
+braces.</p>
+
+<p><b>Example</b>&nbsp;&nbsp;&nbsp;</p>
+
+<pre><code>{{
+  &lt;address&gt;Me, Myself and I, no@whe.re&lt;/address&gt;
+}}</code></pre>
+
+<a name="Alternative_Block_Syntax"></a>
+<h2>Alternative Block Syntax</h2>
+
+<p>All paragraph-like blocks can also be written using a unified syntax.</p>
+
+<p>A block begins with the block type, optionally preceded by the word
+&quot;begin&quot; and a list of modifier words, written in parentheses (&quot;(&quot; and
+&quot;)&quot;) on a line by itself.  A block ends with the word &quot;end&quot;,
+optionally followed by the block type, in parentheses on a line by
+itself.</p>
+
+<p>Thus</p>
+
+<pre><code>(code)
+void* memfrob(void* s, size_t n);
+(end)</code></pre>
+
+<p>is equivalent to</p>
+
+<pre><code>| void* memfrob(void* s, size_t n);</code></pre>
+
+<p>Comment blocks are only available using this alternative syntax.
+Comments are skipped completely when converting to the output format.</p>
+
+<p><b>Example</b>&nbsp;&nbsp;&nbsp;</p>
+
+<pre><code>(comment)
+business secret in here
+(end)</code></pre>
+
+<a name="Environments"></a>
+<h1>Environments</h1>
+
+<p>Environment markup is only recognized at the beginning of a new
+paragraph.  The environment markup must be separated from the
+paragraph text by at least one space or line break.  This is necessary
+to disambiguate certain environments from inline markup, and is
+required for all environments for consistency.</p>
+
+<p>List markup is handled a bit differently to faciliate compact lists of
+short items. If the previous paragraph was part of a list environment
+of the same type, the paragraph separating empty line may be omitted.</p>
+
+<a name="Quotations"></a>
+<h2>Quotations</h2>
+
+<p>A paragraph starting with a greater-than sign (&quot;&gt;&quot;) introduces a
+quotation.  Subsequent paragraphs belong to the same item as long as
+they don't introduce another environment and are indented (at least)
+as far as the starting paragraph.</p>
+
+<p>Quotations can contain all types of paragraphs and other environments.</p>
+
+<p>Contrasting to other environments, the markup character can be
+repeated on every line of the quoted text.</p>
+
+<p><b>Example</b>&nbsp;&nbsp;&nbsp;</p>
+
+<pre><code>&gt; A language that doesn't affect the way you think about
+&gt; programming, is not worth knowing.
+
+-- Alan Perlis</code></pre>
+
+<p><b>Output</b>&nbsp;&nbsp;&nbsp;</p>
+
+<blockquote>
+<blockquote>
+<p>A language that doesn't affect the way you think about
+programming, is not worth knowing.</p>
+</blockquote>
+
+<p>-- Alan Perlis</p>
+</blockquote>
+
+<a name="Bullet_Lists"></a>
+<h2>Bullet Lists</h2>
+
+<p>A paragraph starting with an asterisk (&quot;*&quot;), a dash (&quot;-&quot;) or a small O
+(&quot;o&quot;), followed by a space or line break, starts a new bullet list
+item.  Subsequent paragraphs belong to the same item as long as they
+don't introduce another environment and are indented (at least) as far
+as the starting paragraph.</p>
+
+<p>Two bullet list paragraphs that both introduce a new list item, do not
+need to be separated by two line breaks in a row.</p>
+
+<p>All item in a bullet list must use the same bullet character.</p>
+
+<p><b>Example</b>&nbsp;&nbsp;&nbsp;</p>
+
+<pre><code>* If you think you are beaten, you are.
+* If you think you dare not, you don't.</code></pre>
+
+<p><b>Output</b>&nbsp;&nbsp;&nbsp;</p>
+
+<blockquote>
+<ul>
+<li>
+If you think you are beaten, you are.
+</li>
+<li>
+If you think you dare not, you don't.
+</li>
+</ul>
+</blockquote>
+
+<a name="Numbered_Lists"></a>
+<h2>Numbered Lists</h2>
+
+<p>A paragraph starting with a hash mark (&quot;#&quot;) followed by a space or
+line break, starts a new numbered list item.  Subsequent paragraphs
+belong to the same item as long as they don't introduce another
+environment and are indented (at least) as far as the starting
+paragraph.</p>
+
+<p>Instead of a hash mark, a numbered list item may also be introduced
+with a number, followed by a closing parenthesis (&quot;)&quot;), or a dot
+(&quot;.&quot;).</p>
+
+<p>Two numbered list paragraphs that both introduce a new list item, do
+not need to be separated by two line breaks in a row.</p>
+
+<p><b>Example</b>&nbsp;&nbsp;&nbsp;</p>
+
+<pre><code># tweak
+# twiddle
+# frob</code></pre>
+
+<p><b>Output</b>&nbsp;&nbsp;&nbsp;</p>
+
+<blockquote>
+<ol>
+<li>
+tweak
+</li>
+<li>
+twiddle
+</li>
+<li>
+frob
+</li>
+</ol>
+</blockquote>
+
+<a name="Definition_Lists"></a>
+<h2>Definition Lists</h2>
+
+<p>A paragraph starting with a colon (&quot;:&quot;) starts a new definition list
+item.  The term and the definition text are separated by another
+colon, followed by a space or linebreak.  Subsequent paragraphs belong
+to the same item as long as they don't introduce another environment
+and are indented (at least) as far as the starting paragraph.</p>
+
+<p>Two definition list paragraphs that both introduce a new list item, do
+not need to be separated by two line breaks in a row.</p>
+
+<p><b>Example</b>&nbsp;&nbsp;&nbsp;</p>
+
+<pre><code>:foo: A generic name.
+:bar: Another generic name.
+  Much the same as &quot;foo&quot;.
+:baz, quu, quuz, quux:
+  The rest of the bunch.</code></pre>
+
+<p><b>Output</b>&nbsp;&nbsp;&nbsp;</p>
+
+<blockquote>
+<dl>
+<dt>foo</dt>
+<dd>
+A generic name.
+</dd>
+
+<dt>bar</dt>
+<dd>
+Another generic name.
+  Much the same as &quot;foo&quot;.
+</dd>
+
+<dt>baz, quu, quuz, quux</dt>
+<dd>
+The rest of the bunch.
+</dd>
+</dl>
+</blockquote>
+
+<a name="Sections"></a>
+<h1>Sections</h1>
+
+<p>Sections consist of a heading, followed by a list of environments or
+paragraphs.</p>
+
+<p>The heading begins with one or more equal-signs (&quot;=&quot;) and ends with an
+empty line, or the same number of equal-signs at the end of a line.
+The number of equal-signs indicates the level of the section.</p>
+
+<p>Headings are automatically available as link targets.</p>
+
+<p><b>Example</b>&nbsp;&nbsp;&nbsp;</p>
+
+<pre><code>= heading level 1 =
+
+== heading level 2 ==</code></pre>
+
+<a name="See_Also"></a>
+<h1>See Also</h1>
+
+<p><a href="http://podius.wox.org/documentation/wikitext-spec.txt">The source of this specification</a> in WikiText format.</p>
+
+<p><a href="http://podius.wox.org/">Podius Content Management System</a> uses WikiText
+for its rich text property.</p>
+
+</body>
+</html>
