@@ -30,3 +30,9 @@ deploy-staging: build-staging
 .PHONY: deploy-production
 deploy-production: build-production
 	$(RSYNC) $(RSYNC_OPTIONS) public/* $(PRODUCTION)
+
+.PHONY: update-picnic
+update-picnic:
+	git clone -q https://github.com/franciscop/picnic _work
+	tar -c -f - -C _work/src plugins themes vendor/compass-breakpoint | tar -x -C sass --include='*.scss'
+	rm -rf _work
