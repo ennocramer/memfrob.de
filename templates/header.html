@@ -8,11 +8,11 @@
   <div class="menu">
     {% set root = get_section(path="_index.md") %}
     {% for section in root.subsections | sort(attribute="title") %}
-    <a class="button" href="{{ get_url(path=section.path) | safe }}">{{ section.title }}</a>
+    {{ macros::navlink(item=section) }}
     {% endfor %}
 
     {% for page in root.pages | sort(attribute="title") %}
-    <a class="button" href="{{ get_url(path=page.path) | safe }}">{{ page.title }}</a>
+    {{ macros::navlink(item=page) }}
     {% endfor %}
   </div>
 </nav>

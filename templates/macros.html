@@ -1,0 +1,7 @@
+{% macro navlink(item) %}
+{% if current_path is defined and current_path is starting_with(item.path) %}
+<a class="button" href="{{ get_url(path=item.path) | safe }}">{{ item.title }}</a>
+{% else %}
+<a class="pseudo button" href="{{ get_url(path=item.path) | safe }}">{{ item.title }}</a>
+{% endif %}
+{% endmacro navlink %}
