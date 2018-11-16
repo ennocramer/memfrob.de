@@ -1,5 +1,8 @@
 +++
 title = "About"
+
+[extra]
+icon = "info-circled"
 +++
 
     void *memfrob(void *s, size_t n);
