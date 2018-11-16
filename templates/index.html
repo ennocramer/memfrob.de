@@ -3,23 +3,22 @@
 {% block title %}{{ section.title }}{% endblock title %}
 
 {% block content %}
-<div class="home">
+<article>
 
-  <h1 class="page-heading">Posts</h1>
+  <header>
+    <h1>{{ section.title }}</h1>
+  </header>
 
-  <ul class="post-list">
-    {% set posts = get_section(path="posts/_index.md") %}
-    {% for post in posts.pages %}
-    <li>
-      <span class="post-meta">{{ post.date | date(format="%b %-d, %Y") }}</span>
-
-      <h2>
-        <a class="post-link" href="{{ get_url(path=post.path) | safe }}">{{ post.title }}</a>
-        <p class="post-excerpt">{{ post.description }}</p>
-        </h2>
-      </li>
+  <main>
+    {% set section = get_section(path="posts/_index.md") %}
+    {% for page in section.pages %}
+    <h2><a href="{{ get_url(path=page.path) | safe }}">{{ page.title }}</a></h2>
+    <p class="summary">
+      <time datetime="{{ page.date | date(format="%Y-%m-%dT%H:%M:%S%z") }}">{{ page.date | date(format="%b %Y") }}</time><br/>
+      {{ page.description }}
+    </p>
     {% endfor %}
-  </ul>
+  </main>
 
-</div>
+</article>
 {% endblock content %}

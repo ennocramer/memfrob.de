@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,13 +15,13 @@
 
     {% include "header.html" %}
 
-    <div class="page-content">
-      <div class="wrapper">
-        {%- block content %}{% endblock content -%}
-      </div>
+    <div id="content">
+      {% block content %}{% endblock content %}
     </div>
 
-    {% include "footer.html" %}
+    <div id="footer">
+      {% include "footer.html" %}
+    </div>
 
   </body>
 

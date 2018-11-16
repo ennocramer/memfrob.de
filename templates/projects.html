@@ -3,20 +3,18 @@
 {% block title %}{{ section.title }}{% endblock title %}
 
 {% block content %}
-<div class="home">
+<article>
 
-  <h1 class="page-heading">Projects</h1>
+  <header>
+    <h1>{{ section.title }}</h1>
+  </header>
 
-  <ul class="post-list">
-    {% for project in section.pages | sort(attribute="title") %}
-      <li>
-        <h2>
-          <a class="post-link" href="{{ get_url(path=project.path) | safe }}">{{ project.title }}</a>
-          <p class="post-excerpt">{{ project.description }}</p>
-        </h2>
-      </li>
+  <main>
+    {% for page in section.pages | sort(attribute="title") %}
+    <h2><a href="{{ get_url(path=page.path) | safe }}">{{ page.title }}</a></h2>
+    <p class="summary">{{ page.description }}</p>
     {% endfor %}
-  </ul>
+  </main>
 
-</div>
+</article>
 {% endblock content %}

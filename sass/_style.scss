@@ -1,0 +1,30 @@
+body {
+    font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
+}
+
+h1, h2, h3, h4, h5, h6,
+ul, ol, dl, dd,
+p, blockquote, pre, figure,
+hr {
+    margin: 0;
+    margin-bottom: $picnic-separation;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    padding: 0;
+}
+
+li {
+    padding: 0;
+    margin: 0;
+}
+
+ul, ol {
+    padding-left: 2em;
+}
+
+.summary {
+    font-size: $small-font-size;
+    color: $picnic-gray-summary;
+    margin-top: -$picnic-separation;
+}
