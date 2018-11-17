@@ -5,8 +5,11 @@ date = 2008-01-13
 description = "This articles describes my approach to generating compiler-verfied, unique keys."
 
 [taxonomies]
-categories = [ "programming"]
-tags = [ "c", "c++" ]
+categories = [ "Programming"]
+tags = [ "C", "C++" ]
+
+[extra]
+author = "Enno Cramer"
 +++
 ## The Problem
 

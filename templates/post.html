@@ -9,7 +9,24 @@
   <header>
     <h1>{{ page.title }}</h1>
 
-    <p class="summary"><time datetime="{{ page.date | date(format="%Y-%m-%dT%H:%M:%S%z") }}">{{ page.date | date(format="%b %Y") }}</time>{% if page.extra.author %} • {{ page.extra.author }}{% endif %}</p>
+    <p class="summary">
+      <time datetime="{{ page.date | date(format="%Y-%m-%dT%H:%M:%S%z") }}">{{ page.date | date(format="%b %Y") }}</time>
+      {% if page.extra.author %}
+      by {{ page.extra.author }}
+      {% endif %}
+
+      {% if page.taxonomies is containing("categories") %}
+      {% for category in page.taxonomies["categories"] %}
+      • {{ category }}
+      {% endfor %}
+      {% endif %}
+
+      {% if page.taxonomies is containing("tags") %}
+      {% for tag in page.taxonomies["tags"] %}
+      • {{ tag }}
+      {% endfor %}
+      {% endif %}
+    </p>
   </header>
 
   <main>

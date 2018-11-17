@@ -5,8 +5,11 @@ date = 2008-01-13
 description = "A little article on the math behind transformations in euclidean space, using vectors, homogeneous coordinates, and matrices."
 
 [taxonomies]
-categories = [ "math" ]
-tags = [ "computer graphics", "vectors", "matrices" ]
+categories = [ "Math" ]
+tags = [ "Computer Graphics", "Linear Algebra" ]
+
+[extra]
+author = "Enno Cramer"
 +++
 ## Vectors
 
