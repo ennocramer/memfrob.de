@@ -7,11 +7,11 @@
 
   <div class="menu">
     {% set root = get_section(path="_index.md") %}
-    {% for section in root.subsections | sort(attribute="title") %}
-    {{ macros::navlink(item=section) }}
+    {% for section in root.subsections %}
+    {{ macros::navlink(item=get_section(path=section)) }}
     {% endfor %}
 
-    {% for page in root.pages | sort(attribute="title") %}
+    {% for page in root.pages %}
     {{ macros::navlink(item=page) }}
     {% endfor %}
   </div>

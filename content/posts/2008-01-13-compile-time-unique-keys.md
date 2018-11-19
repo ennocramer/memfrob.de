@@ -1,5 +1,4 @@
 +++
-template = "post.html"
 title = "Compile-Time Unique Keys"
 date = 2008-01-13
 description = "This articles describes my approach to generating compiler-verfied, unique keys."

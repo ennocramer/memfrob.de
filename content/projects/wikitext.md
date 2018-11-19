@@ -1,5 +1,4 @@
 +++
-template = "project.html"
 title = "WikiText"
 description = "WikiText is the specification of a simple plain-text markup, a parser and various output module for this specification in Perl."
 

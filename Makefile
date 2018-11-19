@@ -1,4 +1,4 @@
-GB := gutenberg
+ZOLA := zola
 
 RSYNC := rsync
 RSYNC_OPTIONS = -azh --delete-after --delete-excluded --progress
@@ -17,15 +17,15 @@ PRODUCTION := root@memfrob.de:/srv/$(PRODUCTION_DOMAIN)
 
 .PHONY: serve
 serve:
-	$(GB) serve
+	$(ZOLA) serve
 
 .PHONY: build-staging
 build-staging:
-	$(GB) build -u $(STAGING_URL)
+	$(ZOLA) build -u $(STAGING_URL)
 
 .PHONY: build-production
 build-production:
-	$(GB) build -u $(PRODUCTION_URL)
+	$(ZOLA) build -u $(PRODUCTION_URL)
 
 .PHONY: deploy-staging
 deploy-staging: build-staging

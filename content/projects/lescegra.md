@@ -1,5 +1,4 @@
 +++
-template = "project.html"
 title = "Lescegra"
 description = "Lescegra is an OpenGL 3D engine and game framework, written in strict ANSI C."
 

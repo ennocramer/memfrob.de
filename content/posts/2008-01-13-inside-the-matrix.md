@@ -1,5 +1,4 @@
 +++
-template = "post.html"
 title = "Inside the Matrix"
 date = 2008-01-13
 description = "A little article on the math behind transformations in euclidean space, using vectors, homogeneous coordinates, and matrices."

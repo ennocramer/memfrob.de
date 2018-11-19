@@ -1,5 +1,4 @@
 +++
-template = "project.html"
 title = "Aquapark"
 description = "Aquapark is a kind of 3D demo application, based on Lescegra."
 

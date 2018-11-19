@@ -1,5 +1,4 @@
 +++
-template = "project.html"
 title = "Lepage"
 description = "Lepage is a parser generator written in Perl."
 

@@ -8,8 +8,8 @@
 
     <title>{{ config.title }} - {% block title %}{% endblock title %}</title>
 
-    <link rel="stylesheet" href="{{ get_url(path="site.css", trailing_slash=false) | safe }}">
-    <link rel="stylesheet" href="{{ get_url(path="css/fontello.css", trailing_slash=false) | safe }}">
+    <link rel="stylesheet" href="{{ get_url(path="site.css") | safe }}">
+    <link rel="stylesheet" href="{{ get_url(path="css/fontello.css") | safe }}">
   </head>
 
   <body>

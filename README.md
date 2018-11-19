@@ -1,21 +1,21 @@
 # memfrob.de
 
-The website for memfrob.de, built with
-[Gutenberg](https://getgutenberg.io), [Picnic
-CSS](https://picnicss.com), and [Fontello](http://fontello.com).
+The website for memfrob.de, built with [Zola](https://getzola.org)
+(previously Gutenberg), [Picnic CSS](https://picnicss.com), and
+[Fontello](http://fontello.com).
 
 
 ## Building
 
-Use the `Makefile` or the `gutenberg` binary directly.
+Use the `Makefile` or the `zola` binary directly.
 
-Run `make serve` or `gutenberg serve` to run a local webserver.
+Run `make serve` or `zola serve` to run a local webserver.
 
 Run `make build-staging` to build the site for `design.memfrob.de`.
 
 Run `make build-production` to build the site for `memfrob.de`.
 
-Run `gutenberg build -u <URL>` to build the site for any other domain.
+Run `zola build -u <URL>` to build the site for any other domain.
 
 
 ## Deploying
