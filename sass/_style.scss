@@ -8,6 +8,8 @@ p, blockquote, pre, figure,
 hr {
     margin: 0;
     margin-bottom: $picnic-separation;
+
+    &:last-child { margin-bottom: 0; }
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -27,4 +29,6 @@ ul, ol {
     font-size: $small-font-size;
     color: $picnic-gray-summary;
     margin-top: -$picnic-separation;
+
+    color: #828282;
 }
