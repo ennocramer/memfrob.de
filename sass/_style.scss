@@ -8,12 +8,24 @@ p, blockquote, pre, figure,
 hr {
     margin: 0;
     margin-bottom: $picnic-separation;
-
-    &:last-child { margin-bottom: 0; }
 }
 
 h1, h2, h3, h4, h5, h6 {
     padding: 0;
+}
+
+h1 {
+    text-align: center;
+}
+
+ul, ol, dl, dd,
+p, blockquote, pre, figure,
+hr {
+    &:last-child { margin-bottom: 0; }
+}
+
+p {
+    text-align: justify;
 }
 
 li {
@@ -27,8 +39,27 @@ ul, ol {
 
 .summary {
     font-size: $small-font-size;
-    color: $picnic-gray-summary;
-    margin-top: -$picnic-separation;
+}
 
-    color: #828282;
+.sub-heading {
+    color: $picnic-gray-summary;
+
+    h1 + & {
+        text-align: center;
+        font-size: $small-font-size;
+        margin-top: -$picnic-separation * 2.5;
+        margin-bottom: $picnic-separation * 2.5 !important;
+    }
+
+    h2 + & {
+        font-size: $small-font-size;
+        margin-top: -$picnic-separation * 2;
+        margin-bottom: $picnic-separation * 2 !important;
+    }
+
+    h3 + & {
+        font-size: $tiny-font-size;
+        margin-top: -$picnic-separation * 1.5;
+        margin-bottom: $picnic-separation * 1.5 !important;
+    }
 }

@@ -12,3 +12,22 @@
 
 <a class="{{ class }}" href="{{ get_url(path=item.path) | safe }}">{{ item.title }}</a>
 {% endmacro navlink %}
+
+{% macro postmeta(page) %}
+<time datetime="{{ page.date | date(format="%Y-%m-%dT%H:%M:%S%z") }}">{{ page.date | date(format="%b %Y") }}</time>
+{% if page.extra.author %}
+by {{ page.extra.author }}
+{% endif %}
+
+{% if page.taxonomies is containing("categories") %}
+{% for category in page.taxonomies["categories"] %}
+• {{ category }}
+{% endfor %}
+{% endif %}
+
+{% if page.taxonomies is containing("tags") %}
+{% for tag in page.taxonomies["tags"] %}
+• {{ tag }}
+{% endfor %}
+{% endif %}
+{% endmacro postmeta %}
