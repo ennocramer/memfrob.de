@@ -3,6 +3,8 @@ title = "Compile-Time Unique Keys"
 date = 2008-01-13
 description = "This articles describes my approach to generating compiler-verfied, unique keys."
 
+aliases = [ "programming/2008/01/13/compile-time-unique-keys.html" ]
+
 [taxonomies]
 categories = [ "Programming"]
 tags = [ "C", "C++" ]

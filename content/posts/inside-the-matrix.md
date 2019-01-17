@@ -3,6 +3,8 @@ title = "Inside the Matrix"
 date = 2008-01-13
 description = "A little article on the math behind transformations in euclidean space, using vectors, homogeneous coordinates, and matrices."
 
+aliases = [ "math/2008/01/13/inside-the-matrix.html" ]
+
 [taxonomies]
 categories = [ "Math" ]
 tags = [ "Computer Graphics", "Linear Algebra" ]
