@@ -251,7 +251,7 @@ contributions to improve the situation.
 * The configuration format is very verbose.  More default values would
   make it easier to write custom configurations.
 
-* I wouldd like to extend the configuration for individual infix
+* I would like to extend the configuration for individual infix
   operators to include operator groups and the layout and indentation
   choice.  For example, I want to be able to format `$` and `.` in a
   `flex` manner, while applying `vertical` layout with `align`
