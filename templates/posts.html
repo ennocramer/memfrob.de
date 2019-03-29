@@ -10,16 +10,14 @@
     <h1>{{ section.title }}</h1>
   </header>
 
-  <main>
-    {% set section = get_section(path="posts/_index.md") %}
-    {% for page in section.pages %}
-    <h2><a href="{{ get_url(path=page.path) | safe }}">{{ page.title }}</a></h2>
-    <p class="sub-heading">{{ macros::postmeta(page=page) }}</p>
-    <p class="summary">
-      {{ page.description }}
-    </p>
-    {% endfor %}
-  </main>
+  {% set section = get_section(path="posts/_index.md") %}
+  {% for page in section.pages %}
+  <h2><a href="{{ get_url(path=page.path) | safe }}">{{ page.title }}</a></h2>
+  <p class="sub-heading">{{ macros::postmeta(page=page) }}</p>
+  <p class="summary">
+    {{ page.description }}
+  </p>
+  {% endfor %}
 
 </article>
 {% endblock content %}

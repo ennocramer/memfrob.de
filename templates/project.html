@@ -9,15 +9,13 @@
     <h1>{{ page.title }}</h1>
   </header>
 
-  <main>
-    {{ page.content | safe }}
+  {{ page.content | safe }}
 
-    {% if page.extra.repository %}
-    <h2>Source Control</h2>
+  {% if page.extra.repository %}
+  <h2>Source Control</h2>
 
-    <a href="{{ page.extra.repository | safe }}">Browse Sourcecode</a>
-    {% endif %}
-  </main>
+  <a href="{{ page.extra.repository | safe }}">Browse Sourcecode</a>
+  {% endif %}
 
 </article>
 {% endblock content %}

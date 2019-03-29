@@ -10,7 +10,7 @@
     <h1>{{ section.title }}</h1>
   </header>
 
-  <main class="flex one two-500">
+  <div class="flex one two-500">
     <div>
       {% set section = get_section(path="posts/_index.md") %}
       <h2>{{ section.title }}</h2>
@@ -35,7 +35,7 @@
       </p>
       {% endfor %}
     </div>
-  </main>
+  </div>
 
 </article>
 {% endblock content %}

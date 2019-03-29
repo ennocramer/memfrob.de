@@ -7,15 +7,6 @@ $on-palm:          700px;
     }
 }
 
-#logo {
-    background-color: $picnic-highlight;
-    border-bottom: 1px solid $picnic-gray-border;
-
-    margin-bottom: $picnic-separation;
-    padding: $picnic-separation;
-    padding-top: 60px;
-}
-
 #avatar {
     margin-right: 20px;
     padding: 0px;
@@ -61,19 +52,30 @@ $on-palm:          700px;
     }
 }
 
-#content {
-  width: 90%;
-  max-width: $content-width;
-  margin: 0 auto;
-}
+body {
+    > header {
+        background-color: $picnic-highlight;
+        border-bottom: 1px solid $picnic-gray-border;
 
-#footer {
-    background-color: $picnic-highlight;
-    border-top: 1px solid $picnic-gray-border;
+        margin-bottom: $picnic-separation;
+        padding: $picnic-separation;
+        padding-top: 60px;
+    }
 
-    margin-top: 40px;
-    padding: $picnic-separation;
+    > main {
+        width: 90%;
+        max-width: $content-width;
+        margin: 0 auto;
+    }
 
-    // makes box extend to bottom of screen
-    border-bottom: 1px solid $picnic-highlight;
+    > footer {
+        background-color: $picnic-highlight;
+        border-top: 1px solid $picnic-gray-border;
+
+        margin-top: 40px;
+        padding: $picnic-separation;
+
+        // makes box extend to bottom of screen
+        border-bottom: 1px solid $picnic-highlight;
+    }
 }

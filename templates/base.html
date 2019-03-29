@@ -14,15 +14,17 @@
 
   <body>
 
-    {% include "header.html" %}
+    <header>
+      {% include "header.html" %}
+    </header>
 
-    <div id="content">
+    <main>
       {% block content %}{% endblock content %}
-    </div>
+    </main>
 
-    <div id="footer">
+    <footer>
       {% include "footer.html" %}
-    </div>
+    </footer>
 
   </body>
 
