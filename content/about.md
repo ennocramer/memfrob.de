@@ -1,5 +1,6 @@
 +++
 title = "About"
+weight = 99
 
 [extra]
 icon = "info-circled"
