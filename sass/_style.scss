@@ -63,3 +63,26 @@ ul, ol {
         margin-bottom: $picnic-separation * 1.5 !important;
     }
 }
+
+.toc {
+    display: inline-block;
+    margin: 0;
+    margin-bottom: $picnic-separation * 2;
+    padding: 1em;
+
+    background: #f9f9f9;
+    border: 1px solid #a0a0a0;
+    font-size: $tiny-font-size;
+
+    > summary {
+        display: list-item;
+        text-align: center;
+    }
+
+    > summary + * {
+        margin-top: $picnic-separation;
+    }
+
+    > ol {
+    }
+}

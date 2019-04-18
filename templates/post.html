@@ -14,6 +14,23 @@
     </p>
   </header>
 
+  <details class="toc">
+    <summary>Table of Contents</summary>
+    <ol>
+    {% for h1 in toc %}
+    <li><a href="{{ h1.permalink | safe }}">{{ h1.title }}</a>
+      {% if h1.children %}
+      <ol>
+        {% for h2 in h1.children %}
+        <li><a href="{{ h2.permalink | safe }}">{{ h2.title }}</a></li>
+        {% endfor %}
+      </ol>
+      {% endif %}
+    </li>
+    {% endfor %}
+    </ol>
+  </details>
+
   {{ page.content | safe }}
 
 </article>
