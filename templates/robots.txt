@@ -1,0 +1,3 @@
+User-Agent: *
+Disallow: /hg/
+Sitemap: https://memfrob.de/sitemap.xml
